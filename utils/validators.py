@@ -50,15 +50,18 @@ def phone_number_validator(value,errors=...):
     raise ValidationError(local_errors)
 
 def name_validator(value, errors=...):
+    '''
     'Checks whether the value contains only Unicode literals not other characters'
     'Appends ValidationError with code:"Alphabet" to the list errors if provided'
-    'else simply raises ValidationError with code Alphabet'
+    'else simply raises ValidationError with code 'alpha'
     'errors:'
     'blank: Tabs and spaces only are not allowed'
+    'alpha': Only letters and spaces are allowed'
+    '''
     local_errors=[]
     value=no_whitespace(value)
     if not ure.fullmatch(r'[\p{L}\p{M} ]+', value):
-        local_errors.append(ValidationError("Only letters and spaces are allowed (from any language).", code='invalid'))
+        local_errors.append(ValidationError("Only letters and spaces are allowed (from any language).", code='alpha'))
     if local_errors:
         if isinstance(errors,list):
             errors.append(local_errors)

@@ -7,7 +7,9 @@ from .choices import Status
 from rest_framework.response import Response
 from rest_framework import status
 from karaputar import permissions as permissions_
+from rest_framework.pagination import PageNumberPagination
 
+from .paginators import CustomPaginator
 serializer_model_map={
     'serializer':{
         'poem':serializers.PoemSerializer,
@@ -27,7 +29,9 @@ class LiteratureListCreateViews(
 ):
     permission_classes=[permissions_.CanAddLiterature]
     lookup_field='id'
+    pagination_class=CustomPaginator
     # lookup_url_kwarg='id'
+    # paginator=PageNumberPagination()
     def get_serializer_class(self):
         #handle Key Error
         self.action = 'create' if self.request.method == 'POST' else 'list'

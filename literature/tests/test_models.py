@@ -25,6 +25,24 @@ def get_valid_data():
 नाननानाननाना SISSISS = ७
 '''
     }
+def get_invalid_data(field_name):
+    '''Returs the list of invalid data for field_name
+    '''
+    invalid_data={
+        'title':[
+            'hhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfue',
+            '','***---***', 'युनिकोड र /*/-', 
+        ],
+        'character_count':[0,'पाँच'],
+        'publish_status':[
+            'DRAFT','','BCS','BC',
+        ],
+        'contributors':[
+            'hhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfuehhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfuehhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfuehhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfuehhue हुे huhrflja हुेजलजुहेुउक huefjkhafie iuerj iajuefh lajfue',
+            '',
+        ],
+
+    }
 class TestChhanda(TestCase):
     def setUp(self):
         self.user1=User.objects.create_user(username='test1')
@@ -48,4 +66,5 @@ class TestChhanda(TestCase):
         for field,value in valid_data.items():
             with self.subTest(field=field):
                 self.assertEqual(getattr(chhanda1,field),value)
-    
+    # def test_invalid_data(self):
+        
